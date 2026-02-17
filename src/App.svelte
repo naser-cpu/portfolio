@@ -70,7 +70,7 @@ import Marquee from '$lib/components/Marquee.svelte';
       tags: ['React Native', 'Firebase', 'TypeScript', 'Docker'],
       deploy: 'https://halaride.app',
       repo: '',
-      previewImage: '/static/project-previews/halaride.png'
+      previewImage: 'https://i.ibb.co/zV6BqgsF/halaride.png'
     },
     {
       title: 'Atlas Events',
@@ -79,7 +79,7 @@ import Marquee from '$lib/components/Marquee.svelte';
       tags: ['Java', 'Android', 'Firebase', 'Google Maps'],
       deploy: '',
       repo: 'https://github.com/CMPUT301F25sigmas/sigmas-project',
-      previewImage: '/static/project-previews/Atlas.png'
+      previewImage: 'https://i.ibb.co/k6SW7hW8/Atlas.png'
     },
     {
       title: 'Operations Copilot',
