@@ -10,7 +10,7 @@ import Marquee from '$lib/components/Marquee.svelte';
     role: 'B.Sc. Computing Science & Mathematices Minor',
     school: 'University of Alberta',
     summary:
-      "I like building useful things that don’t break on demo day. Most days you’ll find me shipping full-stack features, cleaning up rough edges, and turning ideas into products people actually use.",
+      "I am a 4th year computer science student passionate about building software that makes a difference. Particularly intersested in SWE, distributed systems and applied ML/AI.",
     email: 'naserabdul719@gmail.com',
     github: 'https://github.com/naser-cpu',
     linkedin: 'https://www.linkedin.com/in/naser-issa-9b6a75237/',

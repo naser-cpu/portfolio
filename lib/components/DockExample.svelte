@@ -32,7 +32,7 @@
           aria-label={item.label}
           title={item.label}
         >
-          <Iconify icon={item.icon} width="22" height="22" />
+          <Iconify icon={item.icon} width="29" height="29" />
         </a>
       </DockIcon>
     {/each}
@@ -43,26 +43,26 @@
   .dock-example-wrap {
     position: fixed;
     left: 50%;
-    bottom: 1.15rem;
+    bottom: 1.5rem;
     transform: translateX(-50%);
     z-index: 200;
   }
 
   :global(.dock-shell) {
-    border-radius: 1rem;
-    padding: 0.35rem 0.65rem;
-    gap: 0.3rem;
+    border-radius: 1.3rem;
+    padding: 0.46rem 0.85rem;
+    gap: 0.39rem;
     border-color: rgba(153, 175, 208, 0.3);
     background: rgba(2, 6, 12, 0.82);
   }
 
   .dock-link {
-    width: 2.35rem;
-    height: 2.35rem;
+    width: 3.06rem;
+    height: 3.06rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.62rem;
+    border-radius: 0.81rem;
     color: #f5f7fb;
     text-decoration: none;
     transition:
@@ -81,12 +81,12 @@
 
   @media (max-width: 768px) {
     .dock-example-wrap {
-      bottom: 0.72rem;
+      bottom: 0.94rem;
     }
 
     .dock-link {
-      width: 2.1rem;
-      height: 2.1rem;
+      width: 2.73rem;
+      height: 2.73rem;
     }
   }
 </style>

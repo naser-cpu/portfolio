@@ -7,8 +7,8 @@
     useTransform
   } from 'svelte-motion';
 
-  export let magnification = 60;
-  export let distance = 160;
+  export let magnification = 78;
+  export let distance = 208;
   export let mouseX = 0;
   let mint = useMotionValue(mouseX);
   $: mint.set(mouseX);
@@ -26,7 +26,7 @@
   let widthSync = useTransform(
     distanceCalc,
     [-distance, 0, distance],
-    [38, magnification, 38]
+    [49.4, magnification, 49.4]
   );
 
   let width = useSpring(widthSync, {

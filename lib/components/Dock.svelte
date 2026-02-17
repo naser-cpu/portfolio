@@ -11,8 +11,8 @@
 
   let className: DockProps['className'] = undefined;
   export { className as class };
-  export let magnification: DockProps['magnification'] = 60;
-  export let distance: DockProps['distance'] = 140;
+  export let magnification: DockProps['magnification'] = 78;
+  export let distance: DockProps['distance'] = 182;
   export let direction: DockProps['direction'] = 'middle';
 
   let dockElement: HTMLDivElement;
@@ -50,12 +50,12 @@
 <style>
   .dock-root {
     display: flex;
-    gap: 0.45rem;
+    gap: 0.59rem;
     align-items: center;
-    height: 3.5rem;
-    padding: 0.32rem 0.68rem;
+    height: 4.55rem;
+    padding: 0.42rem 0.88rem;
     width: max-content;
-    border-radius: 1rem;
+    border-radius: 1.3rem;
     border: 1px solid rgba(154, 176, 211, 0.32);
     background: rgba(4, 8, 14, 0.78);
     backdrop-filter: blur(10px);
