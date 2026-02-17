@@ -29,22 +29,29 @@
       .swiper-button-prev,
       .swiper-button-next {
         color: #d7e7ff;
-        background: rgba(8, 13, 22, 0.84);
-        border: 1px solid rgba(204, 226, 255, 0.24);
-        border-radius: 50%;
-        width: 44px;
-        height: 44px;
-        transition: transform 180ms ease, border-color 180ms ease;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        width: 40px;
+        height: 40px;
+        text-shadow: 0 0 14px rgba(84, 219, 255, 0.45);
+        transition: transform 180ms ease, color 180ms ease;
+      }
+      .swiper-button-prev {
+        left: max(0.8rem, calc(50% - 23rem));
+      }
+      .swiper-button-next {
+        right: max(0.8rem, calc(50% - 23rem));
       }
       .swiper-button-prev:hover,
       .swiper-button-next:hover {
-        transform: scale(1.05);
-        border-color: rgba(159, 201, 255, 0.6);
+        transform: scale(1.08);
+        color: #f1f7ff;
       }
       .swiper-button-prev::after,
       .swiper-button-next::after {
-        font-size: 18px;
-        font-weight: bold;
+        font-size: 40px;
+        font-weight: 300;
       }
       .swiper-pagination-bullet {
         background: rgba(190, 210, 240, 0.36);

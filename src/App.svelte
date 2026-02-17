@@ -1,11 +1,13 @@
 <script>
-  import Background from './Background.svelte';
-  import SmoothCursor from './SmoothCursor.svelte';
-  import ProjectWindows from '$lib/components/project-windows.svelte';
+import Background from './Background.svelte';
+import SmoothCursor from './SmoothCursor.svelte';
+import ProjectWindows from '$lib/components/project-windows.svelte';
+import DockExample from '$lib/components/DockExample.svelte';
+import Marquee from '$lib/components/Marquee.svelte';
 
   const student = {
     name: 'Naser Issa',
-    role: 'Software Engineering Student',
+    role: 'Computer Science Student',
     school: 'University of Alberta',
     summary:
       'I build fast, human-centered software with clean architecture and measurable impact. I enjoy full-stack development, cloud-native workflows, and turning ideas into shipped products.',
@@ -15,14 +17,40 @@
     portrait: 'https://avatars.githubusercontent.com/naser-cpu?size=640'
   };
 
-  const skills = [
-    'JavaScript / TypeScript',
-    'Svelte, React, Node.js',
-    'Python, Java, SQL',
-    'REST APIs + GraphQL',
-    'Docker + CI/CD',
-    'AWS + Firebase'
-  ];
+  const toLabel = (path) =>
+    path
+      .split('/')
+      .pop()
+      .replace('.svg', '')
+      .replace(/[-_]/g, ' ');
+
+  const toLogos = (modules) =>
+    Object.entries(modules)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([path, mod]) => ({
+        src: mod.default ?? mod,
+        label: toLabel(path)
+      }));
+
+  const languageLogos = toLogos(import.meta.glob('../lib/svg/languages/*.svg', { eager: true }));
+
+  const frameworkLibraryLogos = toLogos({
+    ...import.meta.glob('../lib/svg/frameworks-libraries/*.svg', { eager: true }),
+    ...import.meta.glob('../lib/svg/frameworks/*.svg', { eager: true }),
+    ...import.meta.glob('../lib/svg/libraries/*.svg', { eager: true })
+  });
+
+  const toolsPlatformsLogos = toLogos({
+    ...import.meta.glob('../lib/svg/tools-platforms/*.svg', { eager: true }),
+    ...import.meta.glob('../lib/svg/tools/*.svg', { eager: true }),
+    ...import.meta.glob('../lib/svg/platforms/*.svg', { eager: true }),
+    ...import.meta.glob('../lib/svg/docker.svg', { eager: true }),
+    ...import.meta.glob('../lib/svg/github.svg', { eager: true })
+  });
+
+  // Keep rows visible while you gradually add SVGs to each category folder.
+  const frameworksRow = frameworkLibraryLogos.length ? frameworkLibraryLogos : languageLogos;
+  const toolsRow = toolsPlatformsLogos.length ? toolsPlatformsLogos : languageLogos;
 
   const projects = [
     {
@@ -83,7 +111,7 @@
   <title>{student.name} | SWE Portfolio</title>
   <meta
     name="description"
-    content="Portfolio website for a software engineering student featuring projects, skills, and experience."
+    content="Portfolio website for a computer science student featuring projects, skills, and experience."
   />
 </svelte:head>
 
@@ -96,42 +124,52 @@
   <section class="hero section reveal" style="--delay: 0ms">
     <div class="hero-grid">
       <div class="hero-copy">
-        <p class="tag">OPEN TO 2026 SOFTWARE INTERNSHIPS</p>
-        <p class="hero-cmd">profile.welcome();</p>
+        <p class="tag">OPEN TO 2026 SUMMER INTERNSHIPS</p>
         <h1 class="hero-title neon-title">{student.name}</h1>
         <p class="lead">{student.role} at {student.school}</p>
         <p class="summary">{student.summary}</p>
-
+<!-- 
         <div class="hero-actions">
           <a class="btn btn-primary" href={`mailto:${student.email}`}>Contact Me</a>
           <a class="btn btn-ghost" href="#projects">See Projects</a>
-        </div>
+        </div> -->
 
-        <div class="quick-links">
-          <a href={student.github} target="_blank" rel="noreferrer">GitHub</a>
-          <a href={student.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href={`mailto:${student.email}`}>{student.email}</a>
-        </div>
       </div>
 
       <div class="hero-visual" aria-hidden="true">
-        <div class="hero-triangle"></div>
         <div class="hero-portrait">
           <img src={student.portrait} alt="" loading="lazy" />
         </div>
-        <span class="hero-chip hero-chip-a">01</span>
-        <span class="hero-chip hero-chip-b">JS</span>
-        <span class="hero-chip hero-chip-c">SWE</span>
       </div>
     </div>
   </section>
 
   <section class="section reveal" style="--delay: 120ms">
     <h2 class="section-neon-title">Core Skills</h2>
-    <div class="chips">
-      {#each skills as skill}
-        <span>{skill}</span>
-      {/each}
+    <div class="skills-marquee-wrap">
+      <Marquee pauseOnHover class="skills-logo-line skills-logo-line-languages" repeat={6}>
+        {#each languageLogos as logo}
+          <div class="logo-only-pill" aria-label={logo.label} title={logo.label}>
+            <img src={logo.src} alt={logo.label} loading="lazy" />
+          </div>
+        {/each}
+      </Marquee>
+
+      <Marquee pauseOnHover reverse class="skills-logo-line skills-logo-line-frameworks" repeat={6}>
+        {#each frameworksRow as logo}
+          <div class="logo-only-pill" aria-label={logo.label} title={logo.label}>
+            <img src={logo.src} alt={logo.label} loading="lazy" />
+          </div>
+        {/each}
+      </Marquee>
+
+      <Marquee pauseOnHover class="skills-logo-line skills-logo-line-tools" repeat={6}>
+        {#each toolsRow as logo}
+          <div class="logo-only-pill" aria-label={logo.label} title={logo.label}>
+            <img src={logo.src} alt={logo.label} loading="lazy" />
+          </div>
+        {/each}
+      </Marquee>
     </div>
   </section>
 
@@ -176,3 +214,5 @@
     <a class="btn btn-primary" href={`mailto:${student.email}`}>Start a Conversation</a>
   </section>
 </main>
+
+<DockExample />

@@ -122,7 +122,6 @@ main {
 /* Hero Section */
 .hero {
   padding: 3.2rem 0 2.6rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   margin-bottom: 3rem;
 }
 
@@ -257,35 +256,18 @@ h2 {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 0.4rem;
-}
-
-.hero-triangle {
-  position: absolute;
-  bottom: 0;
-  width: min(31rem, 88%);
-  aspect-ratio: 1.14 / 1;
-  background: rgba(255, 76, 111, 0.82);
-  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-  filter: drop-shadow(0 0 1.4rem rgba(255, 76, 111, 0.28));
-}
-
-.hero-triangle::after {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  background: var(--bg);
-  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
 }
 
 .hero-portrait {
-  position: absolute;
-  bottom: 0;
-  width: min(24rem, 74%);
+  position: relative;
+  width: min(18rem, 55%);
   aspect-ratio: 0.88 / 1;
-  border-radius: 0.4rem 0.4rem 0 0;
+  border-radius: 0.45rem;
   overflow: hidden;
+  border: 1px solid rgba(177, 205, 239, 0.32);
+  box-shadow: 0 20px 46px rgba(0, 0, 0, 0.56);
   filter: grayscale(1) contrast(1.06) brightness(0.96);
+  transition: filter 320ms ease;
 }
 
 .hero-portrait img {
@@ -295,32 +277,8 @@ h2 {
   object-position: center top;
 }
 
-.hero-chip {
-  position: absolute;
-  min-width: 2.1rem;
-  text-align: center;
-  padding: 0.22rem 0.35rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.68rem;
-  color: #ffc8d0;
-  border: 1px solid rgba(255, 95, 111, 0.62);
-  background: rgba(0, 0, 0, 0.72);
-  box-shadow: 0 0 0.8rem rgba(255, 95, 111, 0.22);
-}
-
-.hero-chip-a {
-  top: 16%;
-  left: 14%;
-}
-
-.hero-chip-b {
-  right: 16%;
-  top: 34%;
-}
-
-.hero-chip-c {
-  right: 21%;
-  bottom: 10%;
+.hero-visual:hover .hero-portrait {
+  filter: grayscale(0) contrast(1.04) brightness(1);
 }
 
 /* Buttons */
@@ -386,6 +344,53 @@ h2 {
 .chips span:hover {
   border-color: var(--accent);
   background: rgba(255, 58, 58, 0.1);
+}
+
+.skills-marquee-wrap {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.skills-logo-line {
+  --marquee-gap: 1.15rem;
+}
+
+.skills-logo-line-languages {
+  --marquee-duration: 30s;
+}
+
+.skills-logo-line-frameworks {
+  --marquee-duration: 36s;
+}
+
+.skills-logo-line-tools {
+  --marquee-duration: 33s;
+}
+
+.logo-only-pill {
+  width: 3.2rem;
+  height: 3.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-only-pill img {
+  width: 2.2rem;
+  height: 2.2rem;
+  object-fit: contain;
+  opacity: 0.68;
+  filter: grayscale(1) brightness(1.35) contrast(1.05);
+  transition:
+    opacity 200ms ease,
+    filter 200ms ease,
+    transform 200ms ease;
+}
+
+.logo-only-pill:hover img {
+  opacity: 1;
+  filter: grayscale(0) brightness(1);
+  transform: scale(1.08);
 }
 
 .section {
@@ -650,10 +655,6 @@ h2 {
   .hero-visual {
     min-height: 330px;
     margin-top: 0.8rem;
-  }
-
-  .hero-chip {
-    display: none;
   }
 
   .project-cmd {
