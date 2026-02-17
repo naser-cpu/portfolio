@@ -2,12 +2,12 @@
   import { cn } from "$lib/utils";
   import { Motion } from "svelte-motion";
 
-  let className: any = "";
+  let className = "";
   export { className as class };
   export let r = 5;
   export let c = 5;
-  let rows = new Array(r).fill(1);
-  let cols = new Array(c).fill(1);
+  $: rows = new Array(r).fill(1);
+  $: cols = new Array(c).fill(1);
 </script>
 
 <div class="">
