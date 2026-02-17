@@ -84,7 +84,7 @@ import Marquee from '$lib/components/Marquee.svelte';
     {
       title: 'Operations Copilot',
       description:
-        'Containerized planner-executor agent with async job APIs and persisted plans/tool runs for reproducible ops guidance.',
+        'An AI ops assistant that retrieves runbooks and incident history to deliver fast, actionable guidance for on call teams. Or reduce IT departments turnaround time on tickets and improve stakeholder satisfaction.',
       tags: ['Python', 'FastAPI', 'Postgres', 'Redis', 'Docker'],
       deploy: '',
       repo: 'https://github.com/naser-cpu/ops-copilot',
@@ -94,7 +94,7 @@ import Marquee from '$lib/components/Marquee.svelte';
       title: 'Tartan Home Platform',
       description:
         'Backend smart-home platform hardened with CI, expanded tests, and static analysis to improve reliability and code health.',
-      tags: ['Java', 'Dropwizard', 'Docker', 'GitHub Actions'],
+      tags: ['Java', 'Dropwizard', 'Docker', 'SonarQube'],
       deploy: '',
       repo: '',
       wip: true,
@@ -113,7 +113,7 @@ import Marquee from '$lib/components/Marquee.svelte';
       period: 'May 2024 - Aug 2024',
       title: 'Intern Full Stack Developer · MENT',
       detail:
-        'Built reusable React UI features, collaborated with product/design from Figma to production, and supported AWS-backed services with stronger testing/debugging.'
+        'Built reusable React UI features, collaborated with product and design from Figma to production, and supported AWS backed services with stronger testing.'
     },
     {
       period: 'Jun 2021 - Sep 2021',
@@ -230,8 +230,8 @@ import Marquee from '$lib/components/Marquee.svelte';
   <section class="section reveal contact" style="--delay: 300ms">
     <h2 class="section-neon-title">Let&apos;s Build Something Useful</h2>
     <p>
-      I&apos;m actively looking for internship and co-op opportunities where I can contribute quickly keep learning. I'm a 4th year student expected to graduate
-      at Fall 2026
+      I&apos;m actively looking for internship and co-op opportunities where I can contribute quickly and keep learning. I'm a 4th year student expected to graduate
+      at Fall 2026, eligible for upto 16 month co-op work term.
     </p>
     <a class="btn btn-primary" href={emailHref} target="_blank" rel="noopener noreferrer">Start a Conversation</a>
   </section>
