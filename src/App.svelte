@@ -102,6 +102,12 @@ import Marquee from '$lib/components/Marquee.svelte';
     }
   ];
 
+  const normalizedEmail = student.email.replace(/^mailto:/i, '').trim();
+  const emailHref =
+    /^https?:\/\//i.test(student.email)
+      ? student.email
+      : `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(normalizedEmail)}`;
+
   const timeline = [
     {
       period: 'May 2024 - Aug 2024',
@@ -224,10 +230,10 @@ import Marquee from '$lib/components/Marquee.svelte';
   <section class="section reveal contact" style="--delay: 300ms">
     <h2 class="section-neon-title">Let&apos;s Build Something Useful</h2>
     <p>
-      I&apos;m actively looking for internship and co-op opportunities where I can contribute quickly,
-      write maintainable code, and keep learning.
+      I&apos;m actively looking for internship and co-op opportunities where I can contribute quickly keep learning. I'm a 4th year student expected to graduate
+      at Fall 2026
     </p>
-    <a class="btn btn-primary" href={`mailto:${student.email}`}>Start a Conversation</a>
+    <a class="btn btn-primary" href={emailHref} target="_blank" rel="noopener noreferrer">Start a Conversation</a>
   </section>
 </main>
 
