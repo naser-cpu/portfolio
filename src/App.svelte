@@ -11,7 +11,7 @@ import Marquee from '$lib/components/Marquee.svelte';
     school: 'University of Alberta',
     summary:
       "I am a 4th year computer science student passionate about building software that makes a difference. Particularly intersested in SWE, distributed systems and applied ML/AI.",
-    email: 'naserabdul719@gmail.com',
+    email: 'naissa1@ualberta.ca',
     github: 'https://github.com/naser-cpu',
     linkedin: 'https://www.linkedin.com/in/naser-issa-9b6a75237/',
     portrait: 'https://media.licdn.com/dms/image/v2/D5603AQFJPzGTYXQBSQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1673209383960?e=1772668800&v=beta&t=FfYUnrrzLSLYy_hgHhvnYbqfKL6o622VjiqbIatYu4Y'
