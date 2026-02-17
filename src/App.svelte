@@ -7,7 +7,7 @@ import Marquee from '$lib/components/Marquee.svelte';
 
   const student = {
     name: 'Naser Issa',
-    role: 'B.Sc. Computing Science',
+    role: 'B.Sc. Computing Science & Mathematices Minor',
     school: 'University of Alberta',
     summary:
       "I like building useful things that don’t break on demo day. Most days you’ll find me shipping full-stack features, cleaning up rough edges, and turning ideas into products people actually use.",
@@ -64,22 +64,22 @@ import Marquee from '$lib/components/Marquee.svelte';
 
   const projects = [
     {
-      title: 'Community Carpooling App',
+      title: 'Hala Ride',
       description:
         'Cross-platform ridesharing app with 50+ screens, role-based flows, realtime trip updates, chat, and push notifications.',
       tags: ['React Native', 'Firebase', 'TypeScript', 'Docker'],
       deploy: 'https://halaride.app',
       repo: '',
-      previewImage: 'https://picsum.photos/seed/halaride/960/540'
+      previewImage: '/static/project-previews/halaride.png'
     },
     {
-      title: 'Event Lottery System (Android)',
+      title: 'Atlas Events',
       description:
         'Android app for creating and joining events, fair lottery draws, notifications, and QR deep links to reduce signup friction.',
       tags: ['Java', 'Android', 'Firebase', 'Google Maps'],
       deploy: '',
       repo: 'https://github.com/CMPUT301F25sigmas/sigmas-project',
-      previewImage: 'https://picsum.photos/seed/event-lottery/960/540'
+      previewImage: '/static/project-previews/Atlas.png'
     },
     {
       title: 'Operations Copilot',
@@ -88,7 +88,7 @@ import Marquee from '$lib/components/Marquee.svelte';
       tags: ['Python', 'FastAPI', 'Postgres', 'Redis', 'Docker'],
       deploy: '',
       repo: 'https://github.com/naser-cpu/ops-copilot',
-      previewImage: 'https://picsum.photos/seed/ops-copilot/960/540'
+      previewImage: '/static/project-previews/ops-copilot.svg'
     },
     {
       title: 'Tartan Home Platform',
@@ -98,7 +98,7 @@ import Marquee from '$lib/components/Marquee.svelte';
       deploy: '',
       repo: '',
       wip: true,
-      previewImage: 'https://picsum.photos/seed/tartan-home/960/540'
+      previewImage: '/static/project-previews/tartan-home.svg'
     }
   ];
 
@@ -120,7 +120,7 @@ import Marquee from '$lib/components/Marquee.svelte';
 </script>
 
 <svelte:head>
-  <title>{student.name} | SWE Portfolio</title>
+  <title>{student.name} | Portfolio</title>
   <meta
     name="description"
     content="Portfolio website for a computer science student featuring projects, skills, and experience."
@@ -138,7 +138,11 @@ import Marquee from '$lib/components/Marquee.svelte';
       <div class="hero-copy">
         <p class="tag">OPEN TO 2026 SUMMER INTERNSHIPS</p>
         <h1 class="hero-title neon-title">{student.name}</h1>
-        <p class="lead">{student.role} at {student.school}</p>
+        <p class="lead">
+          {student.role}
+          <br />
+          at {student.school}
+        </p>
         <p class="summary">{student.summary}</p>
 <!-- 
         <div class="hero-actions">
@@ -157,7 +161,7 @@ import Marquee from '$lib/components/Marquee.svelte';
   </section>
 
   <section class="section reveal" style="--delay: 120ms">
-    <h2 class="section-neon-title">Core Skills</h2>
+    <h2 class="section-neon-title">Technical Skills</h2>
     <div class="skills-marquee-wrap">
       <Marquee pauseOnHover class="skills-logo-line skills-logo-line-languages" repeat={6}>
         {#each languageLogos as logo}
@@ -189,7 +193,7 @@ import Marquee from '$lib/components/Marquee.svelte';
     <div class="projects-copy">
       <h2 class="section-neon-title projects-neon-title">Projects</h2>
       <p class="projects-intro">
-        Highlights from my software engineering work. Swipe or drag to browse.
+        Highlights from my software engineering work. Swipe or click arrows to browse.
       </p>
 
       <div class="motion-instruction">
@@ -205,15 +209,16 @@ import Marquee from '$lib/components/Marquee.svelte';
 
   <section class="section reveal" style="--delay: 240ms">
     <h2 class="section-neon-title">Experience</h2>
-    <div class="timeline">
+    <ol class="timeline">
       {#each timeline as item}
-        <article>
-          <p class="period">{item.period}</p>
+        <li class="timeline-entry">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <time class="period">{item.period}</time>
           <h3>{item.title}</h3>
           <p>{item.detail}</p>
-        </article>
+        </li>
       {/each}
-    </div>
+    </ol>
   </section>
 
   <section class="section reveal contact" style="--delay: 300ms">

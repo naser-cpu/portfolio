@@ -5,12 +5,18 @@
 
   export let github = 'https://github.com/naser-cpu';
   export let linkedin = 'https://www.linkedin.com/in/naser-issa-9b6a75237/';
-  export let email = 'mailto:naissa1@ualberta.ca';
+  export let email = 'naissa1@ualberta.ca';
+
+  $: normalizedEmail = email.replace(/^mailto:/i, '').trim();
+  $: emailHref =
+    /^https?:\/\//i.test(email)
+      ? email
+      : `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(normalizedEmail)}`;
 
   $: socials = [
     { label: 'GitHub', icon: 'simple-icons:github', href: github, className: '' },
     { label: 'LinkedIn', icon: 'simple-icons:linkedin', href: linkedin, className: '' },
-    { label: 'Email', icon: 'logos:google-gmail', href: email, className: 'gmail' }
+    { label: 'Email', icon: 'logos:google-gmail', href: emailHref, className: 'gmail' }
   ];
 </script>
 
