@@ -88,7 +88,7 @@ import Marquee from '$lib/components/Marquee.svelte';
       tags: ['Python', 'FastAPI', 'Postgres', 'Redis', 'Docker'],
       deploy: '',
       repo: 'https://github.com/naser-cpu/ops-copilot',
-      previewImage: '/static/project-previews/ops-copilot.svg'
+      previewImage: 'https://i.ibb.co/nsspFZqW/copilot.png'
     },
     {
       title: 'Tartan Home Platform',
@@ -98,7 +98,7 @@ import Marquee from '$lib/components/Marquee.svelte';
       deploy: '',
       repo: '',
       wip: true,
-      previewImage: '/static/project-previews/tartan-home.svg'
+      previewImage: 'https://i.ibb.co/ch12R38j/home-security.jpg'
     }
   ];
 
