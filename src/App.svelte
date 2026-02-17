@@ -7,14 +7,14 @@ import Marquee from '$lib/components/Marquee.svelte';
 
   const student = {
     name: 'Naser Issa',
-    role: 'Computer Science Student',
+    role: 'B.Sc. Computing Science',
     school: 'University of Alberta',
     summary:
-      'I build fast, human-centered software with clean architecture and measurable impact. I enjoy full-stack development, cloud-native workflows, and turning ideas into shipped products.',
-    email: 'naissa1@ualberta.ca',
+      "I like building useful things that don’t break on demo day. Most days you’ll find me shipping full-stack features, cleaning up rough edges, and turning ideas into products people actually use.",
+    email: 'naserabdul719@gmail.com',
     github: 'https://github.com/naser-cpu',
     linkedin: 'https://www.linkedin.com/in/naser-issa-9b6a75237/',
-    portrait: 'https://avatars.githubusercontent.com/naser-cpu?size=640'
+    portrait: 'https://media.licdn.com/dms/image/v2/D5603AQFJPzGTYXQBSQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1673209383960?e=1772668800&v=beta&t=FfYUnrrzLSLYy_hgHhvnYbqfKL6o622VjiqbIatYu4Y'
   };
 
   const toLabel = (path) =>
@@ -24,29 +24,39 @@ import Marquee from '$lib/components/Marquee.svelte';
       .replace('.svg', '')
       .replace(/[-_]/g, ' ');
 
-  const toLogos = (modules) =>
-    Object.entries(modules)
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([path, mod]) => ({
-        src: mod.default ?? mod,
-        label: toLabel(path)
-      }));
+  const allLogoModules = import.meta.glob('../lib/svg/**/*.svg', { eager: true });
 
-  const languageLogos = toLogos(import.meta.glob('../lib/svg/languages/*.svg', { eager: true }));
+  const allLogos = Object.entries(allLogoModules)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([path, mod]) => ({
+      path,
+      src: mod.default ?? mod,
+      label: toLabel(path)
+    }));
 
-  const frameworkLibraryLogos = toLogos({
-    ...import.meta.glob('../lib/svg/frameworks-libraries/*.svg', { eager: true }),
-    ...import.meta.glob('../lib/svg/frameworks/*.svg', { eager: true }),
-    ...import.meta.glob('../lib/svg/libraries/*.svg', { eager: true })
-  });
+  const selectLogos = (matcher) =>
+    allLogos
+      .filter(({ path }) => matcher(path.toLowerCase()))
+      .map(({ src, label }) => ({ src, label }));
 
-  const toolsPlatformsLogos = toLogos({
-    ...import.meta.glob('../lib/svg/tools-platforms/*.svg', { eager: true }),
-    ...import.meta.glob('../lib/svg/tools/*.svg', { eager: true }),
-    ...import.meta.glob('../lib/svg/platforms/*.svg', { eager: true }),
-    ...import.meta.glob('../lib/svg/docker.svg', { eager: true }),
-    ...import.meta.glob('../lib/svg/github.svg', { eager: true })
-  });
+  const languageLogos = selectLogos((path) => path.includes('/languages/'));
+
+  const frameworkLibraryLogos = selectLogos(
+    (path) =>
+      path.includes('/framework/') ||
+      path.includes('/frameworks/') ||
+      path.includes('/frameworks-libraries/') ||
+      path.includes('/libraries/')
+  );
+
+  const toolsPlatformsLogos = selectLogos(
+    (path) =>
+      path.includes('/tools/') ||
+      path.includes('/tools-platforms/') ||
+      path.includes('/platforms/') ||
+      path.endsWith('/docker.svg') ||
+      path.endsWith('/github.svg')
+  );
 
   // Keep rows visible while you gradually add SVGs to each category folder.
   const frameworksRow = frameworkLibraryLogos.length ? frameworkLibraryLogos : languageLogos;
@@ -54,54 +64,56 @@ import Marquee from '$lib/components/Marquee.svelte';
 
   const projects = [
     {
-      title: 'Campus Planner',
+      title: 'Community Carpooling App',
       description:
-        'A scheduling web app that helps students balance classes, deadlines, and study sessions with smart conflict detection.',
-      tags: ['Svelte', 'Firebase', 'Tailwind'],
-      deploy: '#',
-      repo: '#',
-      previewImage: 'https://picsum.photos/seed/campus/480/280'
+        'Cross-platform ridesharing app with 50+ screens, role-based flows, realtime trip updates, chat, and push notifications.',
+      tags: ['React Native', 'Firebase', 'TypeScript', 'Docker'],
+      deploy: 'https://halaride.app',
+      repo: '',
+      previewImage: 'https://picsum.photos/seed/halaride/960/540'
     },
     {
-      title: 'Interview Tracker',
+      title: 'Event Lottery System (Android)',
       description:
-        'A full-stack dashboard for tracking applications, interview rounds, and recruiter notes with analytics for conversion rate.',
-      tags: ['Node.js', 'PostgreSQL', 'Chart.js'],
-      deploy: '#',
-      repo: '#',
-      previewImage: 'https://picsum.photos/seed/interview/480/280'
+        'Android app for creating and joining events, fair lottery draws, notifications, and QR deep links to reduce signup friction.',
+      tags: ['Java', 'Android', 'Firebase', 'Google Maps'],
+      deploy: '',
+      repo: 'https://github.com/CMPUT301F25sigmas/sigmas-project',
+      previewImage: 'https://picsum.photos/seed/event-lottery/960/540'
     },
     {
-      title: 'Realtime Collaboration Board',
+      title: 'Operations Copilot',
       description:
-        'A lightweight collaborative whiteboard with websocket sync, presence indicators, and offline caching.',
-      tags: ['Svelte', 'Express', 'Socket.IO'],
-      deploy: '#',
-      repo: '#',
-      previewImage: 'https://picsum.photos/seed/collab/480/280'
+        'Containerized planner-executor agent with async job APIs and persisted plans/tool runs for reproducible ops guidance.',
+      tags: ['Python', 'FastAPI', 'Postgres', 'Redis', 'Docker'],
+      deploy: '',
+      repo: 'https://github.com/naser-cpu/ops-copilot',
+      previewImage: 'https://picsum.photos/seed/ops-copilot/960/540'
     },
     {
-      title: 'Resume Optimizer',
+      title: 'Tartan Home Platform',
       description:
-        'An AI-assisted resume analyzer that scores job-fit and suggests measurable improvements for each bullet point.',
-      tags: ['SvelteKit', 'TypeScript', 'OpenAI API'],
-      deploy: '#',
-      repo: '#',
+        'Backend smart-home platform hardened with CI, expanded tests, and static analysis to improve reliability and code health.',
+      tags: ['Java', 'Dropwizard', 'Docker', 'GitHub Actions'],
+      deploy: '',
+      repo: '',
       wip: true,
-      previewImage: 'https://picsum.photos/seed/resume/480/280'
+      previewImage: 'https://picsum.photos/seed/tartan-home/960/540'
     }
   ];
 
   const timeline = [
     {
-      period: '2025 - Present',
-      title: 'Software Developer Intern',
-      detail: 'Built internal tooling to automate QA workflows and reduced release verification time by 35%.'
+      period: 'May 2024 - Aug 2024',
+      title: 'Intern Full Stack Developer · MENT',
+      detail:
+        'Built reusable React UI features, collaborated with product/design from Figma to production, and supported AWS-backed services with stronger testing/debugging.'
     },
     {
-      period: '2024 - 2025',
-      title: 'Research Assistant',
-      detail: 'Implemented data processing scripts and dashboards for academic analytics projects.'
+      period: 'Jun 2021 - Sep 2021',
+      title: 'Data Analyst Intern · Etisalat',
+      detail:
+        'Used Python and SQL for reporting workflows and built Tableau dashboards that helped the marketing team reduce churn by 10%.'
     }
   ];
 
@@ -175,7 +187,6 @@ import Marquee from '$lib/components/Marquee.svelte';
 
   <section class="section reveal projects-cinematic" id="projects" style="--delay: 180ms">
     <div class="projects-copy">
-      <p class="project-cmd">profile.projects();</p>
       <h2 class="section-neon-title projects-neon-title">Projects</h2>
       <p class="projects-intro">
         Highlights from my software engineering work. Swipe or drag to browse.
@@ -208,7 +219,7 @@ import Marquee from '$lib/components/Marquee.svelte';
   <section class="section reveal contact" style="--delay: 300ms">
     <h2 class="section-neon-title">Let&apos;s Build Something Useful</h2>
     <p>
-      I&apos;m actively looking for internship and junior SWE opportunities where I can contribute quickly,
+      I&apos;m actively looking for internship and co-op opportunities where I can contribute quickly,
       write maintainable code, and keep learning.
     </p>
     <a class="btn btn-primary" href={`mailto:${student.email}`}>Start a Conversation</a>
