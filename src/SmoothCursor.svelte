@@ -30,16 +30,28 @@
   let pointerQuery = null;
 
   function resetCursor() {
-    cursorX.set(-1000);
-    cursorY.set(-1000);
-    rotation.set(0);
-    scale.set(1);
+    cursorX.set(-1000, { hard: true });
+    cursorY.set(-1000, { hard: true });
+    rotation.set(0, { hard: true });
+    scale.set(1, { hard: true });
     isMoving = false;
+    accumulatedRotation = 0;
+    previousAngle = 0;
+    lastUpdateTime = Date.now();
   }
 
   function updateVelocity(currentPos = { x: 0, y: 0 }) {
     const currentTime = Date.now();
     const deltaTime = currentTime - lastUpdateTime;
+    
+    // If too much time has passed, skip velocity calculation to avoid wild springs
+    if (deltaTime > 200) {
+      lastUpdateTime = currentTime;
+      lastMousePos = currentPos;
+      velocity = { x: 0, y: 0 };
+      return;
+    }
+    
     if (deltaTime > 0) {
       velocity = {
         x: (currentPos.x - lastMousePos.x) / deltaTime,
@@ -103,13 +115,21 @@
 
     const onPointerChange = () => applyPointerMode();
 
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        resetCursor();
+      }
+    };
+
     applyPointerMode();
     pointerQuery.addEventListener("change", onPointerChange);
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
       if (timeoutId) clearTimeout(timeoutId);
       pointerQuery?.removeEventListener("change", onPointerChange);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       document.body.style.cursor = "auto";
       resetCursor();
     };
