@@ -119,7 +119,7 @@ import Marquee from '$lib/components/Marquee.svelte';
       period: 'Jun 2021 - Sep 2021',
       title: 'Data Analyst Intern · Etisalat',
       detail:
-        'Used Python and SQL for reporting workflows and built Tableau dashboards that helped the marketing team reduce churn by 10%.'
+        'Used Python and SQL for reporting workflows and built Tableau dashboards that helped the marketing team reduce customer churn by 10%.'
     }
   ];
 
