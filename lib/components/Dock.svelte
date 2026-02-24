@@ -56,8 +56,8 @@
     padding: 0.42rem 0.88rem;
     width: max-content;
     border-radius: 1.3rem;
-    border: 1px solid rgba(154, 176, 211, 0.32);
-    background: rgba(4, 8, 14, 0.78);
+    border: 1px solid rgba(112, 124, 143, 0.6);
+    background: rgba(12, 34, 80, 0.9);
     backdrop-filter: blur(10px);
     box-shadow:
       0 10px 22px rgba(0, 0, 0, 0.45),
