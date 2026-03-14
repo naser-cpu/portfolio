@@ -111,7 +111,7 @@ import Marquee from '$lib/components/Marquee.svelte';
   const timeline = [
     {
       period: 'May 2024 - Aug 2024',
-      title: 'Intern Full Stack Developer · MENT',
+      title: 'Software Engineer Intern · MENT',
       detail:
         'Built reusable React UI features, collaborated with product and design from Figma to production, and supported AWS backed services with stronger testing.'
     },
